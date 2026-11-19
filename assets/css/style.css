@@ -25,34 +25,6 @@
                "Microsoft YaHei", sans-serif;
 }
 
-/* 跟随系统深色模式（用户没手动选过时生效） */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg:          #0e1116;
-    --bg-soft:     #171b21;
-    --fg:          #e7e9ec;
-    --fg-muted:    #a1a9b4;
-    --fg-faint:    #7b8491;
-    --rule:        #262b33;
-    --accent:      #8ab4ff;
-    --accent-soft: #16202f;
-  }
-}
-
-/* 手动切换深色 */
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg:          #0e1116;
-  --bg-soft:     #171b21;
-  --fg:          #e7e9ec;
-  --fg-muted:    #a1a9b4;
-  --fg-faint:    #7b8491;
-  --rule:        #262b33;
-  --accent:      #8ab4ff;
-  --accent-soft: #16202f;
-}
-
 /* 2. 基础 ---------------------------------------------------------------- */
 *,
 *::before,
@@ -220,36 +192,6 @@ a:hover { text-decoration: underline; }
   background: var(--accent-soft);
   font-weight: 600;
 }
-
-/* 主题切换 */
-.profile__tools { margin-top: 14px; }
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  width: 100%;
-  padding: 5px 10px;
-  margin-left: -10px;
-  border: 0;
-  border-radius: 6px;
-  background: none;
-  color: var(--fg-muted);
-  font: inherit;
-  font-size: .85rem;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color .15s ease, color .15s ease;
-}
-.theme-toggle:hover { color: var(--fg); background: var(--bg-soft); }
-
-.icon--sun { display: none; }
-:root[data-theme="dark"] .icon--sun { display: inline-block; }
-:root[data-theme="dark"] .icon--moon { display: none; }
-
-.theme-toggle__text--light { display: none; }
-:root[data-theme="dark"] .theme-toggle__text--light { display: inline; }
-:root[data-theme="dark"] .theme-toggle__text--dark { display: none; }
 
 /* 5. 正文区块 ------------------------------------------------------------ */
 .content { min-width: 0; }
@@ -526,13 +468,6 @@ a:hover { text-decoration: underline; }
     white-space: nowrap;
   }
 
-  .profile__tools {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    margin-top: 6px;
-  }
-  .theme-toggle { margin-left: 0; padding-left: 10px; }
-
   .section + .section { margin-top: 40px; }
 
   .news li {
@@ -564,13 +499,11 @@ a:hover { text-decoration: underline; }
   }
   .profile__intro { grid-column: 1; grid-row: 2; margin-top: 14px; }
   .profile__nav { grid-row: 3; }
-  .profile__tools { grid-row: 4; }
 }
 
 /* 11. 打印 --------------------------------------------------------------- */
 @media print {
   .profile__nav,
-  .theme-toggle,
   .skip-link { display: none; }
 
   .layout {
