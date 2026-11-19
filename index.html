@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Ming-Shan Huang</title>
+<meta name="description" content="Ming-Shan Huang — undergraduate student at Sun Yat-sen University. Research interests: video action understanding and video segmentation.">
+<meta name="author" content="Ming-Shan Huang">
+<meta name="theme-color" content="#ffffff">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ming-Shan Huang">
+<meta property="og:description" content="Undergraduate student at Sun Yat-sen University. Research interests: video action understanding and video segmentation.">
+<meta property="og:image" content="images/profile.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script>
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') {
+      document.documentElement.dataset.theme = saved;
+    }
+  } catch (e) {}
+</script>
+</head>
+
+<body>
+<a class="skip-link" href="#about-me">Skip to content</a>
+
+<!-- 图标库：用 <svg class="icon"><use href="#i-mail"/></svg> 调用 -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2"/>
+    <path d="m3.6 7 8.4 5.9L20.4 7"/>
+  </symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.55 2.87 8.4 6.84 9.76.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.21-3.37-1.21-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.4 9.4 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/>
+  </symbol>
+  <symbol id="i-scholar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4 2.5 9 12 14l9.5-5L12 4Z"/>
+    <path d="M6.5 11.5V16c0 1.9 2.5 3.2 5.5 3.2s5.5-1.3 5.5-3.2v-4.5"/>
+    <path d="M21.5 9v4.6"/>
+  </symbol>
+  <symbol id="i-location" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 21c4.2-4.4 6.5-7.6 6.5-10.4a6.5 6.5 0 1 0-13 0C5.5 13.4 7.8 16.6 12 21Z"/>
+    <circle cx="12" cy="10.4" r="2.4"/>
+  </symbol>
+  <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/>
+    <path d="M14 3v5h5"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.3A8.3 8.3 0 0 1 9.7 4a8.5 8.5 0 1 0 10.3 10.3Z"/>
+  </symbol>
+</svg>
+
+<div class="layout">
+
+  <!-- ================= 左侧：个人档案栏 ================= -->
+  <aside class="profile">
+    <img class="profile__avatar" src="images/profile.jpg" alt="Portrait of Ming-Shan Huang" width="900" height="900">
+
+    <div class="profile__intro">
+      <h1 class="profile__name">Ming-Shan Huang</h1>
+      <p class="profile__bio">Undergraduate student at SYSU</p>
+
+      <ul class="profile__meta">
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-location"/></svg>
+          Guangzhou, China
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+          <a href="mailto:huangmsh29@mail2.sysu.edu.cn">huangmsh29@mail2.sysu.edu.cn</a>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+          <a href="https://github.com/Felicity0710">GitHub</a>
+        </li>
+        <!-- 有 Google Scholar 主页后，复制这一段并填上 ID
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-scholar"/></svg>
+          <a href="https://scholar.google.com/citations?user=YOUR_ID">Google Scholar</a>
+        </li>
+        -->
+        <!-- 有简历就取消注释，并把 cv.pdf 放进 assets/ 目录
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>
+          <a href="assets/cv.pdf">CV</a>
+        </li>
+        -->
+      </ul>
+    </div>
+
+    <!-- <div class="profile__tools">
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-pressed="false">
+        <svg class="icon icon--moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        <svg class="icon icon--sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <span class="theme-toggle__text theme-toggle__text--dark">Dark mode</span>
+        <span class="theme-toggle__text theme-toggle__text--light">Light mode</span>
+      </button>
+    </div> -->
+  </aside>
+
+  <!-- ================= 右侧：正文 ================= -->
+  <main class="content">
+
+    <!-- ---------- About Me ---------- -->
+    <section class="section" id="about-me">
+      <div class="prose">
+        <p>
+          I am currently an undergraduate student at Sun Yat-sen University (SYSU),
+          Guangzhou, China. My research interests lie in Video Action Understanding and
+          Video Segmentation.
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------- Research Interests ---------- -->
+    <!-- <section class="section" id="research">
+      <h2 class="section__title"><span aria-hidden="true">🔍</span> Research Interests</h2>
+      <ul class="entries">
+        <li class="entry">
+          <div class="entry__head">
+            <span class="entry__role">Video Action Understanding</span>
+          </div>
+          <p class="entry__desc">
+            Recognizing, localizing, and evaluating human actions in video — from short trimmed
+            clips to long untrimmed sequences.
+          </p>
+        </li>
+        <li class="entry">
+          <div class="entry__head">
+            <span class="entry__role">Video Segmentation</span>
+          </div>
+          <p class="entry__desc">
+            Segmenting objects, regions, and referred expressions in video, while keeping the
+            predictions temporally consistent across frames.
+          </p>
+        </li>
+      </ul>
+    </section> -->
+
+    <!-- ---------- Honors & Awards ---------- -->
+    <section class="section" id="honors">
+      <h2 class="section__title"><span aria-hidden="true">🏆</span> Honors &amp; Awards</h2>
+      <ul class="news">
+        <li>
+          <time datetime="2026-12">2026.12</time>
+          <p>National Inspirational Scholarship (国家励志奖学金)</p>
+        </li>
+        <li>
+          <time datetime="2025-12">2025.12</time>
+          <p>National Scholarship (国家奖学金)</p>
+        </li>
+        <li>
+          <time datetime="2024-12">2024.12</time>
+          <p>National Inspirational Scholarship (国家励志奖学金)</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ---------- Educations ---------- -->
+    <section class="section" id="educations">
+      <h2 class="section__title"><span aria-hidden="true">📖</span> Education</h2>
+      <ol class="entries">
+        <li class="entry">
+          <div class="entry__head">
+            <span class="entry__role">Undergraduate student</span>
+            <span class="entry__org"><a href="https://www.sysu.edu.cn/">Sun Yat-sen University</a></span>
+            <span class="entry__date"> 2024 – Present</span>
+          </div>
+          <p class="entry__desc">Major: Computer Science · Guangzhou, China</p>
+        </li>
+      </ol>
+    </section>
+
+  </main>
+</div>
+
+<!-- <footer class="site-footer">
+</footer> -->
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

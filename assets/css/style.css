@@ -1,0 +1,584 @@
+/* =========================================================================
+   Ming-Shan Huang — Academic Homepage
+   纯手写 CSS，无框架、无构建。改配色只需动下面 :root 里的变量。
+   ========================================================================= */
+
+/* 1. 设计变量 ------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  --bg:            #ffffff;
+  --bg-soft:       #f5f6f8;
+  --fg:            #1b1e23;
+  --fg-muted:      #5b6470;
+  --fg-faint:      #8b939f;
+  --rule:          #e5e8ec;
+  --accent:        #1d4ed8;
+  --accent-soft:   #eef3ff;
+
+  --radius:        10px;
+  --page-max:      1060px;
+  --gutter:        40px;
+
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC",
+               "Microsoft YaHei", sans-serif;
+}
+
+/* 跟随系统深色模式（用户没手动选过时生效） */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg:          #0e1116;
+    --bg-soft:     #171b21;
+    --fg:          #e7e9ec;
+    --fg-muted:    #a1a9b4;
+    --fg-faint:    #7b8491;
+    --rule:        #262b33;
+    --accent:      #8ab4ff;
+    --accent-soft: #16202f;
+  }
+}
+
+/* 手动切换深色 */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:          #0e1116;
+  --bg-soft:     #171b21;
+  --fg:          #e7e9ec;
+  --fg-muted:    #a1a9b4;
+  --fg-faint:    #7b8491;
+  --rule:        #262b33;
+  --accent:      #8ab4ff;
+  --accent-soft: #16202f;
+}
+
+/* 2. 基础 ---------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; height: auto; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+a:hover { text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  display: inline-block;
+  vertical-align: -0.15em;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: .6rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus { left: 0; }
+
+/* 3. 布局：左档案 + 右正文 ------------------------------------------------ */
+.layout {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 64px var(--gutter) 72px;
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 64px;
+  align-items: start;
+}
+
+/* 4. 个人档案栏 ---------------------------------------------------------- */
+.profile {
+  position: sticky;
+  top: 48px;
+}
+
+.profile__avatar {
+  display: block;
+  width: 180px;
+  height: 180px;
+  max-width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+}
+
+.profile__name {
+  margin: 22px 0 4px;
+  font-size: 1.55rem;
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.profile__bio {
+  margin: 0 0 20px;
+  color: var(--fg-muted);
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+.profile__meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 7px;
+  font-size: .9rem;
+}
+
+.profile__meta li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: var(--fg-muted);
+  line-height: 1.5;
+}
+
+.profile__meta li .icon {
+  margin-top: .22em;
+  color: var(--fg-faint);
+}
+
+.profile__meta a { color: var(--fg-muted); }
+.profile__meta a:hover { color: var(--accent); text-decoration: none; }
+
+/* 目录导航 */
+.profile__nav {
+  margin-top: 26px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 1px;
+  font-size: .89rem;
+}
+
+.profile__nav a {
+  display: block;
+  padding: 5px 10px;
+  margin-left: -10px;
+  border-radius: 6px;
+  color: var(--fg-muted);
+  transition: background-color .15s ease, color .15s ease;
+}
+.profile__nav a:hover {
+  color: var(--fg);
+  background: var(--bg-soft);
+  text-decoration: none;
+}
+.profile__nav a[aria-current] {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+/* 主题切换 */
+.profile__tools { margin-top: 14px; }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 5px 10px;
+  margin-left: -10px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--fg-muted);
+  font: inherit;
+  font-size: .85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease;
+}
+.theme-toggle:hover { color: var(--fg); background: var(--bg-soft); }
+
+.icon--sun { display: none; }
+:root[data-theme="dark"] .icon--sun { display: inline-block; }
+:root[data-theme="dark"] .icon--moon { display: none; }
+
+.theme-toggle__text--light { display: none; }
+:root[data-theme="dark"] .theme-toggle__text--light { display: inline; }
+:root[data-theme="dark"] .theme-toggle__text--dark { display: none; }
+
+/* 5. 正文区块 ------------------------------------------------------------ */
+.content { min-width: 0; }
+
+.section { scroll-margin-top: 32px; }
+.section + .section { margin-top: 48px; }
+
+.section__title {
+  display: flex;
+  align-items: center;
+  gap: .45em;
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.04rem;
+  font-weight: 650;
+  letter-spacing: .005em;
+}
+.section__title span[aria-hidden] {
+  font-size: 1.02em;
+  line-height: 1;
+}
+
+.subhead {
+  margin: 30px 0 12px;
+  font-size: .82rem;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.prose { font-size: .96rem; }
+.prose p { margin: 0 0 1em; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { font-weight: 650; }
+.prose--tight { font-size: .93rem; color: var(--fg-muted); }
+.prose--tight .label {
+  display: inline-block;
+  min-width: 10.5em;
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* 6. 新闻 / 奖项列表 ------------------------------------------------------ */
+.news {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: .95rem;
+}
+
+.news li {
+  display: grid;
+  grid-template-columns: 4.6em minmax(0, 1fr);
+  gap: 18px;
+  align-items: baseline;
+}
+
+.news time {
+  color: var(--fg-faint);
+  font-size: .87rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.news p { margin: 0; }
+.news em { font-style: italic; color: var(--fg-muted); }
+.news strong { font-weight: 600; }
+
+/* 7. 时间线条目（教育 / 实习） -------------------------------------------- */
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 24px;
+}
+
+.entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .3em 1em;
+}
+
+.entry__role { font-weight: 600; font-size: .98rem; }
+.entry__org { color: var(--fg-muted); font-size: .95rem; }
+.entry__org a { color: var(--fg-muted); }
+.entry__org a:hover { color: var(--accent); }
+
+.entry__date {
+  margin-left: auto;
+  color: var(--fg-faint);
+  font-size: .86rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.entry__desc,
+.entry__list {
+  margin: .35em 0 0;
+  color: var(--fg-muted);
+  font-size: .93rem;
+}
+
+.entry__list { padding-left: 1.15em; }
+.entry__list li { margin-bottom: .2em; }
+.entry__list li:last-child { margin-bottom: 0; }
+
+/* 8. 论文 ----------------------------------------------------------------
+   目前还没有发表论文，所以页面上没有这一块；样式先留着，
+   以后按 README 里的代码加论文时直接可用，不用改 CSS。            */
+.pubs {
+  display: grid;
+  gap: 28px;
+}
+
+.pub {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.pub__thumb {
+  display: block;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+
+.pub__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.pub__thumb:hover img { transform: scale(1.035); }
+
+.pub__title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+.pub__title a { color: var(--fg); }
+.pub__title a:hover { color: var(--accent); text-decoration: none; }
+
+.pub__authors {
+  margin: 0 0 4px;
+  color: var(--fg-muted);
+  font-size: .91rem;
+  line-height: 1.55;
+}
+.pub__authors strong { color: var(--fg); font-weight: 600; }
+
+.pub__venue {
+  margin: 0 0 10px;
+  color: var(--fg-muted);
+  font-size: .9rem;
+}
+.pub__venue em {
+  font-style: italic;
+  color: var(--fg);
+  font-weight: 600;
+}
+.pub__note { color: var(--fg-faint); }
+
+.pub__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--fg-muted);
+  font-size: .78rem;
+  line-height: 1.75;
+  transition: color .15s ease, border-color .15s ease;
+}
+.chip:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: .92rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+.pub-list strong { color: var(--fg); font-weight: 600; }
+.pub-list em { font-style: italic; }
+.pub-list a { white-space: nowrap; }
+
+/* 9. 页脚 ---------------------------------------------------------------- */
+.site-footer {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 24px var(--gutter) 56px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  justify-content: space-between;
+  color: var(--fg-faint);
+  font-size: .82rem;
+}
+.site-footer p { margin: 0; }
+
+/* 10. 响应式 ------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+    padding: 40px 24px 48px;
+  }
+
+  .profile {
+    position: static;
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    column-gap: 22px;
+    align-items: start;
+  }
+
+  .profile__avatar {
+    width: 112px;
+    height: 112px;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .profile__intro {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .profile__name { margin: 0 0 2px; font-size: 1.35rem; }
+  .profile__bio { margin-bottom: 12px; }
+  .profile__meta { gap: 4px; font-size: .86rem; }
+
+  /* 手机上目录改成可换行的横排，不用横向滚动 */
+  .profile__nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: 22px;
+    padding-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 4px;
+  }
+  .profile__nav a {
+    margin-left: 0;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  .profile__tools {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 6px;
+  }
+  .theme-toggle { margin-left: 0; padding-left: 10px; }
+
+  .section + .section { margin-top: 40px; }
+
+  .news li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .news time { display: block; font-size: .8rem; }
+
+  .entry__date { margin-left: 0; width: 100%; }
+
+  .pub {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .pub__thumb { max-width: 360px; }
+
+  .prose--tight .label { min-width: 0; display: block; }
+}
+
+@media (max-width: 420px) {
+  .profile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .profile__avatar {
+    grid-column: 1;
+    grid-row: 1;
+    width: 88px;
+    height: 88px;
+  }
+  .profile__intro { grid-column: 1; grid-row: 2; margin-top: 14px; }
+  .profile__nav { grid-row: 3; }
+  .profile__tools { grid-row: 4; }
+}
+
+/* 11. 打印 --------------------------------------------------------------- */
+@media print {
+  .profile__nav,
+  .theme-toggle,
+  .skip-link { display: none; }
+
+  .layout {
+    display: block;
+    max-width: none;
+    padding: 0;
+  }
+  .profile { position: static; }
+  .section { break-inside: avoid; }
+  a { color: inherit; }
+}
